@@ -9,7 +9,7 @@ dotenv.config();
 const loginRouter = express.Router();
 
 loginRouter.post("/", async (req, res) => {
-  const { email, password } = req.body.loginData;
+  const { email, password } = req.body;
 
   const existingUser = await userModel.findOne({ email });
 
@@ -25,10 +25,10 @@ loginRouter.post("/", async (req, res) => {
           .send({ msg: "Something went wrong, Please try again later" });
       }
       if (result) {
-        const { id, email, firstName, lastName, active } = userObj;
+        const { id, email, firstName, lastName } = existingUser;
 
         const token = jwt.sign(
-          { id, email, firstName, lastName, active },
+          { id, email, firstName, lastName },
           process.env.JWT_SECRETKEY,
           {
             expiresIn: "1d",
