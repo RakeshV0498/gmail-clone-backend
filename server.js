@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 import mongoConnect from "./db-utils/mongoConnect.js";
 import registerRouter from "./routes/register.js";
+import loginRouter from "./routes/login.js";
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ server.use(cors());
 mongoConnect();
 
 server.use("/register", registerRouter);
+server.use("/login", loginRouter);
 
 server.listen(port, () => {
   console.log(`${Date().toString()} - server listening on port ${port}`);
