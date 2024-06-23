@@ -33,7 +33,7 @@ forgotPassRouter.post("/", async (req, res) => {
       html: `
       <p>Hello,</p>
       <p>You have requested to reset your password. Please click on the following link to reset your password:</p>
-      <p><a href=${feURL}reset-password/${resetToken}>Reset Password</a></p>
+      <p><a href=${feURL}resetPassword/${resetToken}>Reset Password</a></p>
       <p>If you did not request this password reset, please ignore this email.</p>
       <p>Thank you.</p>
     `,
