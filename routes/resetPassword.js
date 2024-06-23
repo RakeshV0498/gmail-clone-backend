@@ -1,6 +1,6 @@
 import express from "express";
 import bcrypt from "bcrypt";
-import { userModel } from "../db-utils/model";
+import { userModel } from "../db-utils/model.js";
 
 const resetPassRouter = express.Router();
 
