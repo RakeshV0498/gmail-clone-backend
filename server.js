@@ -6,6 +6,7 @@ import mongoConnect from "./db-utils/mongoConnect.js";
 import registerRouter from "./routes/register.js";
 import loginRouter from "./routes/login.js";
 import forgotPassRouter from "./routes/forgotPassword.js";
+import resetPassRouter from "./routes/resetPassword.js";
 
 dotenv.config();
 
@@ -21,7 +22,7 @@ mongoConnect();
 server.use("/register", registerRouter);
 server.use("/login", loginRouter);
 server.use("/forgot-password", forgotPassRouter);
-server.use("/reset-password", forgotPassRouter);
+server.use("/reset-password", resetPassRouter);
 
 server.listen(port, () => {
   console.log(`${Date().toString()} - server listening on port ${port}`);
