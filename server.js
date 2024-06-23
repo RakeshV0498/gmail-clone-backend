@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 import mongoConnect from "./db-utils/mongoConnect.js";
 import registerRouter from "./routes/register.js";
 import loginRouter from "./routes/login.js";
+import forgotPassRouter from "./routes/forgotPassword.js";
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ mongoConnect();
 
 server.use("/register", registerRouter);
 server.use("/login", loginRouter);
+server.use("/forgot-password", forgotPassRouter);
 
 server.listen(port, () => {
   console.log(`${Date().toString()} - server listening on port ${port}`);
