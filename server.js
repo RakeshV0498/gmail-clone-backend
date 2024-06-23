@@ -21,6 +21,7 @@ mongoConnect();
 server.use("/register", registerRouter);
 server.use("/login", loginRouter);
 server.use("/forgot-password", forgotPassRouter);
+server.use("/reset-password", forgotPassRouter);
 
 server.listen(port, () => {
   console.log(`${Date().toString()} - server listening on port ${port}`);
