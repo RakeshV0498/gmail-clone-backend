@@ -20,15 +20,19 @@ const userSchema = new Schema({
   email: {
     type: String,
     required: true,
-    uniqe: true,
+    unique: true,
   },
-  password: {
+  recoveryEmail: {
     type: String,
-    required: true,
+    require: true,
   },
   resetToken: {
     type: String,
     default: null,
+  },
+  password: {
+    type: String,
+    required: true,
   },
   resetTokenExpiry: {
     type: Date,
@@ -40,6 +44,24 @@ const userSchema = new Schema({
   },
 });
 
-const userModel = new model("User", userSchema, "Users");
+const emailSchema = new Schema({
+  id: { type: String, required: true },
+  from: { type: String, required: true },
+  to: { type: String, required: true },
+  cc: { type: String },
+  bcc: { type: String },
+  subject: { type: String },
+  body: { type: String },
+  folder: {
+    type: String,
+    enum: ["inbox", "sent", "drafts", "starred", "trash"],
+    required: true,
+  },
+  starred: { type: Boolean, default: false },
+  createdAt: { type: Date, default: new Date() },
+});
 
-export { userModel };
+const userModel = new model("User", userSchema, "Users");
+const emailModel = new model("Email", emailSchema, "Emails");
+
+export { userModel, emailModel };
