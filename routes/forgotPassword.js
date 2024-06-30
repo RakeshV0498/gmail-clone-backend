@@ -28,7 +28,7 @@ forgotPassRouter.post("/", async (req, res) => {
 
     const mailOptions = {
       from: "rockr1204@gmail.com",
-      to: user.email,
+      to: user.recoveryEmail,
       subject: "Password Reset Email",
       html: `
       <p>Hello,</p>
@@ -41,13 +41,13 @@ forgotPassRouter.post("/", async (req, res) => {
 
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
-        console.log(error);
+        console.error(error);
         return res.status(500).send({ msg: "Error sending email" });
       }
       res.status(200).send({ msg: "Email sent successfully" });
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res
       .status(500)
       .send({ msg: "Something went wrong, Please try again later" });
